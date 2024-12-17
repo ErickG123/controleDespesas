@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controle Despesas - Home</title>
+    <title>Controle Despesas - Cadastro de Despesa</title>
 
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 

@@ -6,17 +6,17 @@
 
     $idDespesa = isset($_POST["idDespesa"]) ?  $_POST["idDespesa"] : "";
     $descricao = isset($_POST["descricao"]) ?  $_POST["descricao"] : "";
-    $valor = isset($_POST["valor"]) ?  tratarValorDecimal($_POST["valor"]) : "";
-    $dataCompra = isset($_POST["dataCompra"]) ?  $_POST["dataCompra"] : "";
-    $dataVencimento = isset($_POST["dataVencimento"]) ?  $_POST["dataVencimento"] : "";
-    $parcelas = isset($_POST["parcelas"]) ?  $_POST["parcelas"] : "";
-    $idFormaPagamento = isset($_POST["idFormaPagamento"]) ?  $_POST["idFormaPagamento"] : "";
-    $idCategoria = isset($_POST["idCategoria"]) ?  $_POST["idCategoria"] : "";
-    $idEmpresa = isset($_POST["idEmpresa"]) ?  $_POST["idEmpresa"] : "";
-    $idPessoa = isset($_POST["idPessoa"]) ?  $_POST["idPessoa"] : "";
-    $idCaminhao = isset($_POST["idCaminhao"]) ?  $_POST["idCaminhao"] : "";
-    $idEquipamento = isset($_POST["idEquipamento"]) ?  $_POST["idEquipamento"] : "";
-    $idCarregadeira = isset($_POST["idCarregadeira"]) ?  $_POST["idCarregadeira"] : "";
+    $valor = isset($_POST["valor"]) ?  tratarValorDecimal($_POST["valor"]) : 0;
+    $dataCompra = isset($_POST["dataCompra"]) ?  $_POST["dataCompra"] : null;
+    $dataVencimento = isset($_POST["dataVencimento"]) ?  $_POST["dataVencimento"] : null;
+    $parcelas = isset($_POST["parcelas"]) ?  $_POST["parcelas"] : 0;
+    $idFormaPagamento = isset($_POST["opcoesFormasPagamento"]) ?  $_POST["opcoesFormasPagamento"][0] : null;
+    $idCategoria = isset($_POST["opcoesCategorias"]) ?  $_POST["opcoesCategorias"][0] : null;
+    $idEmpresa = isset($_POST["opcoesEmpresas"]) ?  $_POST["opcoesEmpresas"][0] : null;
+    $idPessoa = isset($_POST["opcoesPessoas"]) ?  $_POST["opcoesPessoas"][0] : null;
+    $idCaminhao = isset($_POST["opcoesCaminhoes"]) ?  $_POST["opcoesCaminhoes"][0] : null;
+    $idEquipamento = isset($_POST["opcoesEquipamentos"]) ?  $_POST["opcoesEquipamentos"][0] : null;
+    $idCarregadeira = isset($_POST["opcoesCarregadeiras"]) ?  $_POST["opcoesCarregadeiras"][0] : null;
 
     $campos = [
         "descrição" => $descricao,
@@ -43,8 +43,8 @@
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":descricao", $descricao);
     $stmt->bindParam(":valor", $valor);
-    $stmt->bindParam(":dataCompra", $dataCompra);
-    $stmt->bindParam(":dataVencimento", $dataVencimento);
+    $stmt->bindParam(":dataCompra", $dataCompra, $dataCompra == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    $stmt->bindParam(":dataVencimento", $dataVencimento, $dataVencimento == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
     $stmt->bindParam(":parcelas", $parcelas);
     $stmt->bindParam(":idFormaPagamento", $idFormaPagamento);
     $stmt->bindParam(":idCategoria", $idCategoria);

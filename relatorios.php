@@ -12,16 +12,22 @@
 </head>
 <body class="w-11/12 mx-auto p-4">
     <?php 
+        session_start();
+        include_once("database/conn.php");
+        include_once("includes/select.php");
         include_once("includes/alerta.php");
         getAlerta();
     ?>
 
     <?php include_once("header.php"); ?>
 
+    <?php include_once("includes/filtros.php"); ?>
+
     <main>
 
     </main>
 
     <script><?= include_once("scripts/alerta.js"); ?></script>
+    <script><?= include_once("scripts/select.js"); ?></script>
 </body>
 </html>

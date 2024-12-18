@@ -3,13 +3,13 @@ function toggleOptions(nomeInput) {
     options.classList.toggle("hidden");
 }
 
-function updateSelectedText(nomeInput) {
+function updateSelectedText(selectedText, nomeInput) {
     var checkboxes = document.querySelectorAll(`input[name="${nomeInput}[]"]:checked`);
     var values = Array.from(checkboxes).map(function (checkbox) {
         return checkbox.nextElementSibling.textContent;
     });
 
-    var selectedText = document.getElementById("selectedText" + nomeInput);
+    var selectedText = document.getElementById("selectedText" + selectedText);
     selectedText.textContent = values.length > 0 ? values.join(", ") : "Opções";
     selectedText.classList.toggle("truncate", values.length > 0);
 }
@@ -26,6 +26,39 @@ function filterOptions(nomeInput) {
     }
 }
 
+function updateSelect(nomeInput) {
+    let input = document.getElementById("id" + nomeInput);
+
+    if (input) {
+        let selectedId = input.value;
+
+        let radio = document.getElementById("opcao" + nomeInput + selectedId);
+
+        if (radio) {
+            radio.checked = true;
+
+            let selectedTextElement = document.getElementById("selectedText" + nomeInput);
+            let labelText = radio.nextElementSibling.textContent;
+
+            selectedTextElement.textContent = labelText || "Opções";
+        }
+    }
+}
+
+function clearFilter() {
+    uncheckRadios("opcoesFormasPagamento", "FormasPagamento");
+}
+
+function uncheckRadios(selectedText, nomeInput) {
+    var checkboxes = document.querySelectorAll(`input[name="opcoes${nomeInput}[]"]`);
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.checked = false;
+    });
+
+    updateSelectedText(selectedText, nomeInput);
+}
+
 document.addEventListener("click", function (event) {
     var dropdowns = document.querySelectorAll("[id^='dropdown']");
     dropdowns.forEach(function (dropdown) {
@@ -34,4 +67,8 @@ document.addEventListener("click", function (event) {
             options.classList.add("hidden");
         }
     });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateSelect("FormasPagamento");
 });

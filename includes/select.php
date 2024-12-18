@@ -1,5 +1,5 @@
 <?php
-    function gerarSelect($conn, $tabela, $campoId, $campoDescricao, $nomeInput, $mensagemVazia = "Nenhum registro encontrado.") {
+    function gerarSelect($conn, $tabela, $campoId, $campoDescricao, $nomeInput, $selectedText, $mensagemVazia = "Nenhum registro encontrado.") {
         try {
             $sql = "SELECT $campoId, $campoDescricao FROM $tabela";
             $stmt = $conn->prepare($sql);
@@ -9,8 +9,8 @@
 
             if ($result) {
                 foreach ($result as $row) {
-                    echo '<label for="opcao' . $row[$campoId] . '" class="block px-4 py-2 cursor-pointer hover:bg-gray-100">';
-                    echo '<input type="radio" id="opcao' . $row[$campoId] . '" name="' . $nomeInput . '[]" value="' . $row[$campoId] . '" class="form-checkbox mr-2" onclick="updateSelectedText(\'' . $nomeInput . '\');">';
+                    echo '<label for="opcao' . $selectedText . $row[$campoId] . '" class="block px-4 py-2 cursor-pointer hover:bg-gray-100">';
+                    echo '<input type="radio" id="opcao' . $selectedText . $row[$campoId] . '" name="' . $nomeInput . '[]" value="' . $row[$campoId] . '" class="form-checkbox mr-2" onclick="updateSelectedText(\'' . $selectedText . '\', \'' . $nomeInput . '\');">';
                     echo '<span>' . $row[$campoDescricao] . '</span>';
                     echo '</label>';
                 }

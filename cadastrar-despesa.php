@@ -24,9 +24,26 @@
     <main class="shadow-lg rounded-md p-4">
         <form action="api/despesas/criar-despesa.php" method="post">
             <div class="grid grid-cols-4 gap-2.5">
+                <div class="flex flex-col w-full h-full mr-2.5">
+                    <label for="dropdownPessoas" class="font-semibold mb-1">Cedente</label>
+
+                    <div id="dropdownPessoas" class="relative">
+                        <div id="selectedValuesPessoas" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Pessoas')">
+                            <span id="selectedTextPessoas" class="truncate">Opções</span>
+                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+
+                        <div id="optionsPessoas" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
+                            <input type="text" id="searchInputPessoas" oninput="filterOptions('Pessoas')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
+                            <?php gerarSelect($conn, "PESSOAS", "IDPESSOA", "NOME", "opcoesPessoas", "Pessoas", "Nenhum cedente cadastrado."); ?>
+                        </div>
+                    </div>
+                </div>
                 <div class="flex flex-col">
-                    <label class="font-semibold mb-1" for="descricao">Descrição <span class="text-red-700">*</span></label>
-                    <input class="border border-black rounded-md p-2.5 outline-none" type="text" name="descricao" required>
+                    <label class="font-semibold mb-1" for="observacoes">Observações</label>
+                    <input class="border border-black rounded-md p-2.5 outline-none" type="text" name="observacoes">
                 </div>
                 <div class="flex flex-col">
                     <label class="font-semibold mb-1" for="valor">Valor <span class="text-red-700">*</span></label>
@@ -45,87 +62,19 @@
                     <input class="border border-black rounded-md p-2.5 outline-none" type="number" name="parcelas">
                 </div>
                 <div class="flex flex-col w-full h-full mr-2.5">
-                    <label for="dropdownPessoas" class="font-semibold mb-1">Pessoa</label>
+                    <label for="dropdownGruposFluxo" class="font-semibold mb-1">Grupo de Fluxo</label>
 
-                    <div id="dropdownPessoas" class="relative">
-                        <div id="selectedValuesPessoas" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Pessoas')">
-                            <span id="selectedTextPessoas" class="truncate">Opções</span>
+                    <div id="dropdownGruposFluxo" class="relative">
+                        <div id="selectedValuesGruposFluxo" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('GruposFluxo')">
+                            <span id="selectedTextGruposFluxo" class="truncate">Opções</span>
                             <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
 
-                        <div id="optionsPessoas" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
-                            <input type="text" id="searchInputPessoas" oninput="filterOptions('Pessoas')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
-                            <?php gerarSelect($conn, "PESSOAS", "IDPESSOA", "NOME", "opcoesPessoas", "Pessoas", "Nenhuma pessoa cadastrado."); ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full h-full mr-2.5">
-                    <label for="dropdownCaminhoes" class="font-semibold mb-1">Caminhão</label>
-
-                    <div id="dropdownCaminhoes" class="relative">
-                        <div id="selectedValuesCaminhoes" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Caminhoes')">
-                            <span id="selectedTextCaminhoes" class="truncate">Opções</span>
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-
-                        <div id="optionsCaminhoes" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
-                            <input type="text" id="searchInputCaminhoes" oninput="filterOptions('Caminhoes')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
-                            <?php gerarSelect($conn, "CAMINHOES", "IDCAMINHAO", "CAMINHAO", "opcoesCaminhoes", "Caminhoes", "Nenhum caminhão cadastrado."); ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full h-full mr-2.5">
-                    <label for="dropdownEquipamentos" class="font-semibold mb-1">Equipamento</label>
-
-                    <div id="dropdownEquipamentos" class="relative">
-                        <div id="selectedValuesEquipamentos" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Equipamentos')">
-                            <span id="selectedTextEquipamentos" class="truncate">Opções</span>
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-
-                        <div id="optionsEquipamentos" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
-                            <input type="text" id="searchInputEquipamentos" oninput="filterOptions('Equipamentos')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
-                            <?php gerarSelect($conn, "EQUIPAMENTOS", "IDEQUIPAMENTO", "EQUIPAMENTO", "opcoesEquipamentos", "Equipamentos", "Nenhum equipamento cadastrado."); ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full h-full mr-2.5">
-                    <label for="dropdownCarregadeiras" class="font-semibold mb-1">Carregadeira</label>
-
-                    <div id="dropdownCarregadeiras" class="relative">
-                        <div id="selectedValuesCarregadeiras" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Carregadeiras')">
-                            <span id="selectedTextCarregadeiras" class="truncate">Opções</span>
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-
-                        <div id="optionsCarregadeiras" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
-                            <input type="text" id="searchInputCarregadeiras" oninput="filterOptions('Carregadeiras')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
-                            <?php gerarSelect($conn, "CARREGADEIRAS", "IDCARREGADEIRA", "CARREGADEIRA", "opcoesCarregadeiras", "Carregadeiras", "Nenhuma carregadeira cadastrada."); ?>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex flex-col w-full h-full mr-2.5">
-                    <label for="dropdownCategorias" class="font-semibold mb-1">Categoria</label>
-
-                    <div id="dropdownCategorias" class="relative">
-                        <div id="selectedValuesCategorias" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Categorias')">
-                            <span id="selectedTextCategorias" class="truncate">Opções</span>
-                            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-
-                        <div id="optionsCategorias" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
-                            <input type="text" id="searchInputCategorias" oninput="filterOptions('Categorias')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
-                            <?php gerarSelect($conn, "CATEGORIAS", "IDCATEGORIA", "CATEGORIA", "opcoesCategorias", "Categorias", "Nenhuma categoria cadastrada."); ?>
+                        <div id="optionsGruposFluxo" class="absolute hidden mt-1 w-full bg-white rounded-md border border-gray-300 shadow-lg max-h-48 overflow-y-auto z-50">
+                            <input type="text" id="searchInputGruposFluxo" oninput="filterOptions('GruposFluxo')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
+                            <?php gerarSelect($conn, "GRUPOSFLUXO", "IDGRUPOFLUXO", "GRUPOFLUXO", "opcoesGruposFluxo", "GruposFluxo", "Nenhuma grupo de fluxo cadastrada."); ?>
                         </div>
                     </div>
                 </div>

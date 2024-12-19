@@ -14,15 +14,15 @@
     try {
         $stmt->execute();
 
-        redirecionar("Pessoas", "Pessoa excluída com Sucesso!", "green");
+        redirecionar("Cedentes", "Cedente excluído com Sucesso!", "green");
         exit;
     } catch (PDOException $ex) {
         if ($ex->getCode() == "23000") {
             if (strpos($ex->getMessage(), "a foreign key constraint fails") != false) {
-                redirecionar("Pessoas", "Erro ao excluir a Pessoa. Ela está relacionada a outros registros.", "red");
+                redirecionar("Cedentes", "Erro ao excluir o Cedente. Ele está relacionado a outros registros.", "red");
             }
         } else {
-            redirecionar("Pessoas", "Erro ao excluir a Pessoa. Erro: $ex", "red");
+            redirecionar("Cedentes", "Erro ao excluir o Cedente. Erro: $ex", "red");
             exit;
         }
     }

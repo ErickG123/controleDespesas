@@ -21,7 +21,7 @@
         $idDespesa = isset($_GET["idDespesa"]) ? $_GET["idDespesa"] : "";
 
         $sql = "SELECT DP.IDDESPESA, DP.OBSERVACOES, DP.VALOR, DP.DATACOMPRA, DP.DATAVENCIMENTO,
-                       DP.PARCELAS, FP.IDFORMAPAGAMENTO, GF.IDGRUPOFLUXO, PS.NOME
+                       DP.PARCELAS, FP.IDFORMAPAGAMENTO, GF.IDGRUPOFLUXO, PS.IDPESSOA
                 FROM DESPESAS DP
                 LEFT JOIN FORMASPAGAMENTO FP ON DP.IDFORMAPAGAMENTO = FP.IDFORMAPAGAMENTO
                 LEFT JOIN GRUPOSFLUXO GF ON DP.IDGRUPOFLUXO = GF.IDGRUPOFLUXO
@@ -120,8 +120,10 @@
             </div>
             <div class="h-px bg-gray-100 my-2.5"></div>
             <div class="flex justify-end">
-                <button class="w-1/6 bg-green-600 hover:bg-green-500 text-white text-center font-semibold p-2.5 rounded-md outline-none" type="submit">Criar</button>
+                <button class="w-1/6 bg-green-600 hover:bg-green-500 text-white text-center font-semibold p-2.5 rounded-md outline-none" type="submit">Atualizar</button>
             </div>
+
+            <input type="hidden" name="idDespesa" value="<?= $despesa["IDDESPESA"]; ?>">
         </form>
     </main>
 

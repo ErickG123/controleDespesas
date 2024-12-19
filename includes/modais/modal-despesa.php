@@ -8,7 +8,7 @@
                 <input type="hidden" name="idDespesa" id="idDespesaExcluir">
 
                 <div class="flex flex-col">
-                    <button class="w-full bg-green-600 hover:bg-green-500 text-white text-center font-semibold p-2.5 rounded-md outline-none mb-2" type="submit">Confirmar</button>
+                    <button class="w-full bg-blue-600 hover:bg-blue-500 text-white text-center font-semibold p-2.5 rounded-md outline-none mb-2" type="submit">Confirmar</button>
                     <button class="w-full bg-red-600 hover:bg-red-500 text-white text-center font-semibold p-2.5 rounded-md outline-none" type="button" onclick="fecharModalExcluirDespesa();">Cancelar</button>
                 </div>
             </form>
@@ -16,4 +16,4 @@
     </div>
 </div>
 
-<script><?= include_once("scripts/modais/modal-excluir-despesa.js"); ?></script>
+<script><?= include_once("scripts/modais/despesas/modal-excluir-despesa.js"); ?></script>

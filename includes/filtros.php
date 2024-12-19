@@ -1,17 +1,30 @@
 <?php
-    $filtroCategoria = isset($_GET["opcoesGruposFluxo"]) ? $_GET["opcoesGruposFluxo"][0] : "";
+    $dataCompraInicial = isset($_GET["dataCompraInicial"]) ? $_GET["dataCompraInicial"] : "";
+    $dataCompraFinal = isset($_GET["dataCompraFinal"]) ? $_GET["dataCompraFinal"] : "";
+    $dataVencimentoInicial = isset($_GET["dataVencimentoFinal"]) ? $_GET["dataVencimentoFinal"] : "";
+    $dataVencimentoFinal = isset($_GET["dataVencimentoFinal"]) ? $_GET["dataVencimentoFinal"] : "";
+    $filtroPessoa = isset($_GET["opcoesPessoas"]) ? $_GET["opcoesPessoas"][0] : "";
+    $filtroGrupoFluxo = isset($_GET["opcoesGruposFluxo"]) ? $_GET["opcoesGruposFluxo"][0] : "";
     $filtroFormaPagamento = isset($_GET["opcoesFormasPagamento"]) ? $_GET["opcoesFormasPagamento"][0] : "";
 ?>
 
 <form class="shadow-lg rounded-md p-4" action="#" method="get">
-    <div class="grid grid-cols-5 mb-2.5">
-        <div class="flex flex-col mr-2.5">
-            <label class="font-semibold mb-1" for="dataCompra">Data da Compra</label>
-            <input class="border border-black p-2.5 rounded-md outline-none cursor-pointer" type="date" name="dataCompra" id="dataCompra">
+    <div class="grid grid-cols-4 gap-2.5 mb-2.5">
+        <div class="flex flex-col">
+            <label class="font-semibold mb-1" for="dataCompraInicial">Data da Compra Inicial</label>
+            <input class="border border-black p-2.5 rounded-md outline-none cursor-pointer" type="date" name="dataCompraInicial" id="dataCompraInicial" value="<?= $dataCompraInicial; ?>">
         </div>
         <div class="flex flex-col">
-            <label class="font-semibold mb-1" for="dataVencimento">Data de Vencimento</label>
-            <input class="border border-black p-2.5 rounded-md outline-none cursor-pointer" type="date" name="dataVencimento" id="dataVencimento">
+            <label class="font-semibold mb-1" for="dataCompraFinal">Data de Compra Final</label>
+            <input class="border border-black p-2.5 rounded-md outline-none cursor-pointer" type="date" name="dataCompraFinal" id="dataCompraFinal" value="<?= $dataCompraFinal; ?>">
+        </div>
+        <div class="flex flex-col">
+            <label class="font-semibold mb-1" for="dataVencimentoInicial">Data da Vencimento Inicial</label>
+            <input class="border border-black p-2.5 rounded-md outline-none cursor-pointer" type="date" name="dataVencimentoInicial" id="dataVencimentoInicial" value="<?= $dataVencimentoInicial; ?>">
+        </div>
+        <div class="flex flex-col">
+            <label class="font-semibold mb-1" for="dataVencimentoFinal">Data de Vencimento Final</label>
+            <input class="border border-black p-2.5 rounded-md outline-none cursor-pointer" type="date" name="dataVencimentoFinal" id="dataVencimentoFinal" value="<?= $dataVencimentoFinal; ?>">
         </div>
     </div>
     <div class="flex">
@@ -30,6 +43,8 @@
                     <input type="text" id="searchInputPessoas" oninput="filterOptions('Pessoas')" placeholder="Pesquisar..." class="w-full p-2 border-b border-gray-300 outline-none">
                     <?php gerarSelect($conn, "PESSOAS", "IDPESSOA", "NOME", "opcoesPessoas", "Pessoas", "Nenhum cedente cadastrado."); ?>
                 </div>
+
+                <input type="hidden" id="idPessoas" name="idPessoas" value="<?= $filtroPessoa; ?>">
             </div>
         </div>
         <div class="flex flex-col w-full h-full mr-2.5">
@@ -48,7 +63,7 @@
                     <?php gerarSelect($conn, "GRUPOSFLUXO", "IDGRUPOFLUXO", "GRUPOFLUXO", "opcoesGruposFluxo", "GruposFluxo", "Nenhuma grupo de fluxo cadastrada."); ?>
                 </div>
 
-                <input type="hidden" id="idGruposFluxo" name="idGruposFluxo" value="<?= $filtroCategoria; ?>">
+                <input type="hidden" id="idGruposFluxo" name="idGruposFluxo" value="<?= $filtroGrupoFluxo; ?>">
             </div>
         </div>
         <div class="flex flex-col w-full h-full">

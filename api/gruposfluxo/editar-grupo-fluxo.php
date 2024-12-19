@@ -27,7 +27,7 @@
         redirecionar("Grupos de Fluxo", "Grupo de Fluxo atualizado com Sucesso!", "green");
         exit;
     } catch (PDOException $ex) {
-        redirecionar("Grupos de Fluxo", "Erro ao atualizar o Grupo de Fluxo.", "red");
+        redirecionar("Grupos de Fluxo", "Erro ao atualizar o Grupo de Fluxo. Erro: $ex", "red");
         exit;
     }
 ?>

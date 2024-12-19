@@ -27,7 +27,7 @@
         redirecionar("Formas de Pagamento", "Forma de Pagamento atualizada com Sucesso!", "green");
         exit;
     } catch (PDOException $ex) {
-        redirecionar("Formas de Pagamento", "Erro ao atualizar a Forma de Pagamento.", "red");
+        redirecionar("Formas de Pagamento", "Erro ao atualizar a Forma de Pagamento. Erro: $ex", "red");
         exit;
     }
 ?>

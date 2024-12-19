@@ -46,17 +46,35 @@ function updateSelect(nomeInput) {
 }
 
 function clearFilter() {
-    uncheckRadios("opcoesFormasPagamento", "FormasPagamento");
+    uncheckRadios("Pessoas", "opcoesPessoas");
+    uncheckRadios("GruposFluxo", "opcoesGruposFluxo");
+    uncheckRadios("FormasPagamento", "opcoesFormasPagamento");
+
+    limparDatas();
 }
 
 function uncheckRadios(selectedText, nomeInput) {
-    var checkboxes = document.querySelectorAll(`input[name="opcoes${nomeInput}[]"]`);
+    var checkboxes = document.querySelectorAll(`input[name="${nomeInput}[]"]`);
 
     checkboxes.forEach(function (checkbox) {
         checkbox.checked = false;
     });
 
     updateSelectedText(selectedText, nomeInput);
+    clearHiddenInput(selectedText);
+}
+
+function limparDatas() {
+    document.getElementById("dataCompraInicial").value = "";
+    document.getElementById("dataCompraFinal").value = "";
+    document.getElementById("dataVencimentoInicial").value = "";
+    document.getElementById("dataVencimentoFinal").value = "";
+}
+
+function clearHiddenInput(nomeInput) {
+    var hiddenInput = document.getElementById(`id${nomeInput}`);
+
+    hiddenInput.value = "";
 }
 
 document.addEventListener("click", function (event) {
@@ -70,5 +88,7 @@ document.addEventListener("click", function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+    updateSelect("Pessoas");
+    updateSelect("GruposFluxo");
     updateSelect("FormasPagamento");
 });

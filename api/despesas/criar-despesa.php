@@ -20,7 +20,7 @@
     validarCampos("Despesas", $campos);
 
     $sql = "INSERT INTO DESPESAS (OBSERVACOES, VALOR, DATACOMPRA, DATAVENCIMENTO, PARCELAS, IDFORMAPAGAMENTO,
-                                  IDCATEGORIA, IDPESSOA)
+                                  IDGRUPOFLUXO, IDPESSOA)
             VALUES (:observacoes, :valor, :dataCompra, :dataVencimento, :parcelas, :idFormaPagamento,
                     :idGrupoFluxo, :idPessoa)";
 
@@ -28,8 +28,8 @@
     $stmt->bindParam(":observacoes", $observacoes);
     $stmt->bindParam(":valor", $valor);
     $stmt->bindParam(":dataCompra", $dataCompra, $dataCompra == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-    $stmt->bindParam(":dataVencimento", $dataVencimento, $dataCompra == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-    $stmt->bindParam(":parcelas", $parcelas);
+    $stmt->bindParam(":dataVencimento", $dataVencimento, $dataVencimento == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
+    $stmt->bindParam(":parcelas", $parcelas, $parcelas == null ? PDO::PARAM_NULL : PDO::PARAM_INT);
     $stmt->bindParam(":idFormaPagamento", $idFormaPagamento);
     $stmt->bindParam(":idGrupoFluxo", $idGrupoFluxo);
     $stmt->bindParam(":idPessoa", $idPessoa);
@@ -37,7 +37,7 @@
     try {
         $stmt->execute();
 
-        redirecionar("Despesas", "Despesa cadastrada com Sucesso!", "green");
+        redirecionarComPath("Despesas", "Despesa cadastrada com Sucesso!", "green", "../../index.php");
         exit;
     } catch (PDOException $ex) {
         redirecionar("Despesas", "Erro ao cadastrar a Despesa. Erro: $ex", "red");

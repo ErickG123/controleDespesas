@@ -36,7 +36,7 @@
     $stmt->bindParam(":valor", $valor);
     $stmt->bindParam(":dataCompra", $dataCompra, $dataCompra == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
     $stmt->bindParam(":dataVencimento", $dataVencimento, $dataVencimento == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-    $stmt->bindParam(":parcelas", $parcelas);
+    $stmt->bindParam(":parcelas", $parcelas, $parcelas == null ? PDO::PARAM_NULL : PDO::PARAM_INT);
     $stmt->bindParam(":idFormaPagamento", $idFormaPagamento);
     $stmt->bindParam(":idGrupoFluxo", $idGrupoFluxo);
     $stmt->bindParam(":idPessoa", $idPessoa);
@@ -45,10 +45,10 @@
     try {
         $stmt->execute();
 
-        redirecionar("Despesas", "Despesa atualizada com Sucesso!", "green");
+        redirecionarComPath("Despesas", "Despesa atualizada com Sucesso!", "green", "../../index.php");
         exit;
     } catch (PDOException $ex) {
-        redirecionar("Despesas", "Erro ao atualizar a Despesa.", "red");
+        redirecionar("Despesas", "Erro ao atualizar a Despesa. Erro: $ex", "red");
         exit;
     }
 ?>

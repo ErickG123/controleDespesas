@@ -24,4 +24,13 @@
         header("Location: {$_SERVER['HTTP_REFERER']}");
         exit;
     }
+
+    function redirecionarComPath($titulo, $mensagem, $cor, $path) {
+        $_SESSION["alert_title"] = $titulo;
+        $_SESSION["alert_msg"] = $mensagem;
+        $_SESSION["alert_color"] = $cor;
+
+        header("Location: {$path}");
+        exit;
+    }
 ?>

@@ -2,7 +2,8 @@
     session_start();
     include_once("../../database/conn.php");
     include_once("../../includes/alerta.php");
-
+    
+    include_once("../../includes/validacoes.php");
     $idGrupoFluxo = isset($_POST["idGrupoFluxo"]) ? $_POST["idGrupoFluxo"] : "";
     $grupoFluxo = isset($_POST["grupoFluxo"]) ? $_POST["grupoFluxo"] : "";
 

@@ -31,7 +31,7 @@
                 <tr class="text-gray-600">
                     <th class="text-start p-2.5">Cedente</th>
                     <th class="text-start p-2.5">Valor</th>
-                    <th class="text-start p-2.5">Observacoes</th>
+                    <th class="text-start p-2.5">Observações</th>
                     <th class="text-start p-2.5">Dt. Compra</th>
                     <th class="text-start p-2.5">Dt. Vencimento</th>
                     <th class="text-start p-2.5">Parcelas</th>

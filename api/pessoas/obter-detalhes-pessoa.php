@@ -16,6 +16,6 @@
     if ($pessoa) {
         echo json_encode($pessoa);
     } else {
-        echo json_encode(array("error" => "Pessoa não encontrado."));
+        echo json_encode(array("error" => "Pessoa não encontrada."));
     }
 ?>

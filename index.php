@@ -43,7 +43,8 @@
             <tbody>
                 <?php 
                     $sql = "SELECT DP.IDDESPESA, DP.OBSERVACOES, DP.VALOR, DP.DATACOMPRA, DP.DATAVENCIMENTO,
-                                   DP.PARCELAS, FP.FORMAPAGAMENTO, GF.GRUPOFLUXO, PS.NOME
+                                   DP.TOTALPARCELAS, DP.PARCELA, DP.IDDESPESAREF, FP.FORMAPAGAMENTO, GF.GRUPOFLUXO, 
+                                   PS.NOME
                             FROM DESPESAS DP
                             LEFT JOIN FORMASPAGAMENTO FP ON DP.IDFORMAPAGAMENTO = FP.IDFORMAPAGAMENTO
                             LEFT JOIN GRUPOSFLUXO GF ON DP.IDGRUPOFLUXO = GF.IDGRUPOFLUXO
@@ -85,7 +86,15 @@
                         <td class="p-2.5 whitespace-nowrap overflow-hidden text-ellipsis max-w-48"><?= $despesa["OBSERVACOES"] ? $despesa["OBSERVACOES"] : "-"; ?></td>
                         <td class="p-2.5"><?= $despesa["DATACOMPRA"] ? formatarData($despesa["DATACOMPRA"]) : "-"; ?></td>
                         <td class="p-2.5"><?= $despesa["DATAVENCIMENTO"] ? formatarData($despesa["DATAVENCIMENTO"]) : "-"; ?></td>
-                        <td class="p-2.5"><?= $despesa["PARCELAS"] ? $despesa["PARCELAS"] : "-"; ?></td>
+                        <td class="p-2.5">
+                            <?php
+                                if ($despesa["TOTALPARCELAS"]) {
+                                    echo $despesa["PARCELA"] . "/" . $despesa["TOTALPARCELAS"];
+                                } else {
+                                    echo "1/1";
+                                }
+                            ?>
+                        </td>
                         <td class="p-2.5"><?= $despesa["FORMAPAGAMENTO"] ? $despesa["FORMAPAGAMENTO"] : "-"; ?></td>
                         <td class="p-2.5"><?= $despesa["GRUPOFLUXO"] ? $despesa["GRUPOFLUXO"] : "-"; ?></td>
                         <td class="p-2.5 text-center font-bold cursor-pointer relative dropdown">

@@ -21,7 +21,7 @@
         $idDespesa = isset($_GET["idDespesa"]) ? $_GET["idDespesa"] : "";
 
         $sql = "SELECT DP.IDDESPESA, DP.OBSERVACOES, DP.VALOR, DP.DATACOMPRA, DP.DATAVENCIMENTO,
-                       DP.PARCELAS, FP.IDFORMAPAGAMENTO, GF.IDGRUPOFLUXO, PS.IDPESSOA
+                       DP.PARCELA, DP.TOTALPARCELAS, FP.IDFORMAPAGAMENTO, GF.IDGRUPOFLUXO, PS.IDPESSOA
                 FROM DESPESAS DP
                 LEFT JOIN FORMASPAGAMENTO FP ON DP.IDFORMAPAGAMENTO = FP.IDFORMAPAGAMENTO
                 LEFT JOIN GRUPOSFLUXO GF ON DP.IDGRUPOFLUXO = GF.IDGRUPOFLUXO
@@ -41,7 +41,7 @@
         <form action="api/despesas/editar-despesa.php" method="post">
             <div class="grid grid-cols-4 gap-2.5">
                 <div class="flex flex-col w-full h-full mr-2.5">
-                    <label for="dropdownPessoas" class="font-semibold mb-1">Cedente</label>
+                    <label for="dropdownPessoas" class="font-semibold mb-1">Cedente <span class="text-red-700">*</span></label>
 
                     <div id="dropdownPessoas" class="relative">
                         <div id="selectedValuesPessoas" class="flex items-center justify-between rounded-md p-2.5 border border-black cursor-pointer" onclick="toggleOptions('Pessoas')">
@@ -60,24 +60,24 @@
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <label class="font-semibold mb-1" for="descricao">Observações</label>
-                    <input class="border border-black rounded-md p-2.5 outline-none" type="text" name="descricao" value="<?= $despesa["OBSERVACOES"]; ?>">
+                    <label class="font-semibold mb-1" for="observacoes">Observações</label>
+                    <input class="border border-black rounded-md p-2.5 outline-none" type="text" name="observacoes" value="<?= $despesa["OBSERVACOES"]; ?>">
                 </div>
                 <div class="flex flex-col">
                     <label class="font-semibold mb-1" for="valor">Valor <span class="text-red-700">*</span></label>
                     <input class="border border-black rounded-md p-2.5 outline-none" type="text" name="valor" value="<?= $despesa["VALOR"]; ?>" required>
                 </div>
                 <div class="flex flex-col">
-                    <label class="font-semibold mb-1" for="dataCompra">Data da Compra</label>
-                    <input class="border border-black p-2.5 rounded-md outline-none" type="date" name="dataCompra" id="dataCompra" value="<?= $despesa["DATACOMPRA"]; ?>">
+                    <label class="font-semibold mb-1" for="dataCompra">Data da Compra <span class="text-red-700">*</span></label>
+                    <input class="border border-black p-2.5 rounded-md outline-none" type="date" name="dataCompra" id="dataCompra" value="<?= $despesa["DATACOMPRA"]; ?>" required>
                 </div>
                 <div class="flex flex-col">
-                    <label class="font-semibold mb-1" for="dataVencimento">Data de Vencimento</label>
-                    <input class="border border-black p-2.5 rounded-md outline-none" type="date" name="dataVencimento" id="dataVencimento" value="<?= $despesa["DATAVENCIMENTO"]; ?>">
+                    <label class="font-semibold mb-1" for="dataVencimento">Data de Vencimento <span class="text-red-700">*</span></label>
+                    <input class="border border-black p-2.5 rounded-md outline-none" type="date" name="dataVencimento" id="dataVencimento" value="<?= $despesa["DATAVENCIMENTO"]; ?>" required>
                 </div>
                 <div class="flex flex-col">
-                    <label class="font-semibold mb-1" for="parcelas">Parcelas</label>
-                    <input class="border border-black rounded-md p-2.5 outline-none" type="number" name="parcelas" value="<?= $despesa["PARCELAS"] ? $despesa["PARCELAS"] : ""; ?>">
+                    <label class="font-semibold mb-1" for="totalParcelas">Parcelas</label>
+                    <input class="border border-black rounded-md p-2.5 outline-none" type="number" name="totalParcelas" value="<?= $despesa["TOTALPARCELAS"] ? $despesa["TOTALPARCELAS"] : ""; ?>">
                 </div>
                 <div class="flex flex-col w-full h-full mr-2.5">
                     <label for="dropdownGruposFluxo" class="font-semibold mb-1">Grupo de Fluxo</label>

@@ -9,34 +9,61 @@
     $valor = isset($_POST["valor"]) ?  tratarValorDecimal($_POST["valor"]) : 0;
     $dataCompra = isset($_POST["dataCompra"]) ?  $_POST["dataCompra"] : null;
     $dataVencimento = isset($_POST["dataVencimento"]) ?  $_POST["dataVencimento"] : null;
-    $parcelas = isset($_POST["parcelas"]) ?  $_POST["parcelas"] : null;
+    $totalParcelas = isset($_POST["totalParcelas"]) ?  $_POST["totalParcelas"] : null;
     $idFormaPagamento = isset($_POST["opcoesFormasPagamento"]) ?  $_POST["opcoesFormasPagamento"][0] : null;
     $idGrupoFluxo = isset($_POST["opcoesGruposFluxo"]) ?  $_POST["opcoesGruposFluxo"][0] : null;
     $idPessoa = isset($_POST["opcoesPessoas"]) ?  $_POST["opcoesPessoas"][0] : null;
 
     $campos = [
-        "valor" => $valor
+        "valor" => $valor,
+        "cedente" => $idPessoa,
+        "data de compra" => $dataCompra,
+        "data de vencimento" => $dataVencimento
     ];
 
     validarCampos("Despesas", $campos);
 
-    $sql = "UPDATE DESPESAS SET
-            OBSERVACOES = :observacoes,
-            VALOR = :valor,
-            DATACOMPRA = :dataCompra,
-            DATAVENCIMENTO = :dataVencimento,
-            PARCELAS = :parcelas,
-            IDFORMAPAGAMENTO = :idFormaPagamento,
-            IDGRUPOFLUXO = :idGrupoFluxo,
-            IDPESSOA = :idPessoa
-            WHERE IDDESPESA = :idDespesa";
+    $sqlCheckPai = "SELECT IDDESPESAREF 
+                    FROM DESPESAS 
+                    WHERE IDDESPESA = :idDespesa";
+
+    $stmtCheckPai = $conn->prepare($sqlCheckPai);
+    $stmtCheckPai->bindParam(":idDespesa", $idDespesa);
+    $stmtCheckPai->execute();
+
+    $despesa = $stmtCheckPai->fetch(PDO::FETCH_ASSOC);
+
+    if (!$despesa["IDDESPESAREF"]) {
+        $sql = "UPDATE DESPESAS SET
+                OBSERVACOES = :observacoes,
+                VALOR = :valor,
+                DATACOMPRA = :dataCompra,
+                DATAVENCIMENTO = :dataVencimento,
+                TOTALPARCELAS = :totalParcelas,
+                IDFORMAPAGAMENTO = :idFormaPagamento,
+                IDGRUPOFLUXO = :idGrupoFluxo,
+                IDPESSOA = :idPessoa
+                WHERE IDDESPESA = :idDespesa 
+                OR IDDESPESAREF = :idDespesa";
+    } else {
+        $sql = "UPDATE DESPESAS SET
+                OBSERVACOES = :observacoes,
+                VALOR = :valor,
+                DATACOMPRA = :dataCompra,
+                DATAVENCIMENTO = :dataVencimento,
+                TOTALPARCELAS = :totalParcelas,
+                IDFORMAPAGAMENTO = :idFormaPagamento,
+                IDGRUPOFLUXO = :idGrupoFluxo,
+                IDPESSOA = :idPessoa
+                WHERE IDDESPESA = :idDespesa";
+    }
 
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(":observacoes", $observacoes);
     $stmt->bindParam(":valor", $valor);
     $stmt->bindParam(":dataCompra", $dataCompra, $dataCompra == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
     $stmt->bindParam(":dataVencimento", $dataVencimento, $dataVencimento == null ? PDO::PARAM_NULL : PDO::PARAM_STR);
-    $stmt->bindParam(":parcelas", $parcelas, $parcelas == null ? PDO::PARAM_NULL : PDO::PARAM_INT);
+    $stmt->bindParam(":totalParcelas", $totalParcelas, PDO::PARAM_INT);
     $stmt->bindParam(":idFormaPagamento", $idFormaPagamento);
     $stmt->bindParam(":idGrupoFluxo", $idGrupoFluxo);
     $stmt->bindParam(":idPessoa", $idPessoa);

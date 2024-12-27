@@ -1,10 +1,11 @@
 <?php 
     session_start();
     include_once("../../database/conn.php");
+    include_once("../../includes/validacoes.php");
     include_once("../../includes/alerta.php");
 
     $cidade = isset($_POST["cidade"]) ? $_POST["cidade"] : "";
-    $idEstado = isset($_POST["idEstado"]) ? $_POST["idEstado"] : "";
+    $idEstado = isset($_POST["opcoesEstados"]) ? $_POST["opcoesEstados"][0] : null;
 
     $campos = [
         "cidade" => $cidade,

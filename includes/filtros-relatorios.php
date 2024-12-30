@@ -89,6 +89,19 @@
     <div class="h-px bg-gray-100 my-2.5"></div>
     <div class="flex justify-end">
         <button class="w-1/6 bg-red-600 hover:bg-red-500 text-white text-center font-semibold p-2.5 rounded-md outline-none mr-2.5" type="submit" onclick="clearFilter();">Limpar</button>
-        <button class="w-1/6 bg-green-600 hover:bg-green-500 text-white text-center font-semibold p-2.5 rounded-md outline-none" type="submit">Filtrar</button>
+        <button class="w-1/6 bg-green-600 hover:bg-green-500 text-white text-center font-semibold p-2.5 rounded-md outline-none mr-2.5" type="submit">Filtrar</button>
+        <a 
+            class="w-1/6 bg-blue-600 hover:bg-blue-500 text-white text-center font-semibold p-2.5 rounded-md outline-none" 
+            href="<?= "api/relatorios/gerar-relatorio-despesas.php" .
+                       "?dataCompraInicial=$dataCompraInicial" .
+                       "&dataCompraFinal=$dataCompraFinal" .
+                       "&dataVencimentoInicial=$dataVencimentoInicial" .
+                       "&dataVencimentoFinal=$dataVencimentoFinal" .
+                       "&idPessoa=$filtroPessoa" .
+                       "&idGrupoFluxo=$filtroGrupoFluxo" .
+                       "&idFormaPagamento=$filtroFormaPagamento";?>"
+            target="_blank">
+            Relatório
+        </a>
     </div>
 </form>

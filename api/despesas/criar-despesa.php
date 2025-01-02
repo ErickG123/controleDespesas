@@ -10,7 +10,7 @@
     $dataVencimento = isset($_POST["dataVencimento"]) ?  $_POST["dataVencimento"] : null;
     $totalParcelas = isset($_POST["totalParcelas"]) ?  (int)$_POST["totalParcelas"] : null;
     $idFormaPagamento = isset($_POST["opcoesFormasPagamento"]) ?  $_POST["opcoesFormasPagamento"][0] : null;
-    $idGrupoFluxo = isset($_POST["opcoesCategorias"]) ?  $_POST["opcoesCategorias"][0] : null;
+    $idGrupoFluxo = isset($_POST["opcoesGruposFluxo"]) ?  $_POST["opcoesGruposFluxo"][0] : null;
     $idPessoa = isset($_POST["opcoesPessoas"]) ?  $_POST["opcoesPessoas"][0] : null;
 
     $campos = [

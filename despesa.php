@@ -19,8 +19,8 @@
 
         $idDespesa = isset($_GET["idDespesa"]) ? $_GET["idDespesa"] : "";
 
-        $sql = "SELECT DP.OBSERVACOES, DP.VALOR, DP.DATACOMPRA, DP.DATAVENCIMENTO, DP.PARCELAS,
-                       FP.FORMAPAGAMENTO, GF.GRUPOFLUXO, PS.NOME
+        $sql = "SELECT DP.OBSERVACOES, DP.VALOR, DP.DATACOMPRA, DP.DATAVENCIMENTO, DP.TOTALPARCELAS,
+                       DP.PARCELA, FP.FORMAPAGAMENTO, GF.GRUPOFLUXO, PS.NOME
                 FROM DESPESAS DP
                 LEFT JOIN FORMASPAGAMENTO FP ON DP.IDFORMAPAGAMENTO = FP.IDFORMAPAGAMENTO
                 LEFT JOIN GRUPOSFLUXO GF ON DP.IDGRUPOFLUXO = GF.IDGRUPOFLUXO
@@ -61,7 +61,7 @@
             </div>
             <div class="flex flex-col">
                 <p class="font-semibold mb-1">Parcelas</p>
-                <p><?= $despesa["PARCELAS"] ? $despesa["PARCELAS"] : ""; ?></p>
+                <p><?= $despesa["TOTALPARCELAS"] ? $despesa["PARCELA"] . "/" . $despesa["TOTALPARCELAS"] : ""; ?></p>
             </div>
             <div class="flex flex-col">
                 <p class="font-semibold mb-1">Grupo de Fluxo</p>

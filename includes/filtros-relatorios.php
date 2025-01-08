@@ -1,7 +1,7 @@
 <?php
     $dataCompraInicial = isset($_GET["dataCompraInicial"]) ? $_GET["dataCompraInicial"] : "";
     $dataCompraFinal = isset($_GET["dataCompraFinal"]) ? $_GET["dataCompraFinal"] : "";
-    $dataVencimentoInicial = isset($_GET["dataVencimentoFinal"]) ? $_GET["dataVencimentoFinal"] : "";
+    $dataVencimentoInicial = isset($_GET["dataVencimentoInicial"]) ? $_GET["dataVencimentoInicial"] : "";
     $dataVencimentoFinal = isset($_GET["dataVencimentoFinal"]) ? $_GET["dataVencimentoFinal"] : "";
     $filtroPessoa = isset($_GET["opcoesPessoas"]) ? $_GET["opcoesPessoas"][0] : "";
     $filtroGrupoFluxo = isset($_GET["opcoesGruposFluxo"]) ? $_GET["opcoesGruposFluxo"][0] : "";

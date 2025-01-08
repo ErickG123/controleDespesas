@@ -29,7 +29,7 @@
 
         $dataCompraInicial = isset($_GET["dataCompraInicial"]) ? $_GET["dataCompraInicial"] : "";
         $dataCompraFinal = isset($_GET["dataCompraFinal"]) ? $_GET["dataCompraFinal"] : "";
-        $dataVencimentoInicial = isset($_GET["dataVencimentoFinal"]) ? $_GET["dataVencimentoFinal"] : "";
+        $dataVencimentoInicial = isset($_GET["dataVencimentoInicial"]) ? $_GET["dataVencimentoInicial"] : "";
         $dataVencimentoFinal = isset($_GET["dataVencimentoFinal"]) ? $_GET["dataVencimentoFinal"] : "";
         $filtroPessoa = isset($_GET["idPessoa"]) ? $_GET["idPessoa"] : "";
         $filtroGrupoFluxo = isset($_GET["idGrupoFluxo"]) ? $_GET["idGrupoFluxo"] : "";

@@ -2,7 +2,7 @@
     $host = "localhost";
     $dbname = "controledespesas";
     $username = "root";
-    $password = "root";
+    $password = "";
 
     try {
         $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

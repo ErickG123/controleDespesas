@@ -1,5 +1,5 @@
 # Controle de Despesas da Recicla
-![Status do Projeto](https://img.shields.io/badge/status-conclu%C3%ADdo-brightgreen)
+![Status do Projeto](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 ![PHP Version](https://img.shields.io/badge/PHP-%3E%3D%207.4-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-%3E%3D%205.7-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellowgreen)

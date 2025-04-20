@@ -35,4 +35,12 @@ Este projeto foi desenvolvido de forma simples e sem o uso de frameworks, pois s
 3. Configure o arquivo de conexão com o banco de dados em database/conn.php.
 
 ## 📄 Licença
-Este projeto está licenciado sob os termos da [MIT License](LICENSE).
+Este projeto está disponível sob duas licenças:
+- [MIT License](./LICENSE)
+- [GNU General Public License v3.0](./LICENSE-GPL)
+
+Você pode escolher qual das duas licenças deseja seguir ao utilizar este código.
+- **MIT**: Permite uso, modificação e distribuição, inclusive comercial, desde que o aviso de direitos autorais seja mantido.
+- **GPLv3**: Requer que qualquer modificação ou redistribuição também seja de código aberto sob a mesma licença.
+
+Para mais detalhes, leia os arquivos de licença incluídos no repositório.

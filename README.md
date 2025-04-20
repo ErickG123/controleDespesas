@@ -33,3 +33,6 @@ Este projeto foi desenvolvido de forma simples e sem o uso de frameworks, pois s
 2. Configure o banco de dados MySQL com a estrutura fornecida no arquivo database.sql.
 
 3. Configure o arquivo de conexão com o banco de dados em database/conn.php.
+
+## 📄 Licença
+Este projeto está licenciado sob os termos da [MIT License](LICENSE).

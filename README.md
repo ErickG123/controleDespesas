@@ -3,6 +3,7 @@
 ![PHP Version](https://img.shields.io/badge/PHP-%3E%3D%207.4-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-%3E%3D%205.7-blue)
 ![License](https://img.shields.io/badge/License-MIT-yellowgreen)
+![License](https://img.shields.io/badge/License-GPLv3-blue)
 
 Este projeto foi desenvolvido para realizar o controle das despesas de uma recicladora, com funcionalidades de cadastro de despesas, cedentes e geração de relatórios. O sistema também permite o gerenciamento de formas de pagamento, grupos de fluxo, cidades e estados.
 
